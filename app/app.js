@@ -1,2 +1,5 @@
+import $ from 'jquery';
 
-var app = {};
+$(function() {
+  alert('ready');
+});
