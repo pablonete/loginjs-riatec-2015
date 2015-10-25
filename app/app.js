@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import loginDialog from './login/loginDialog';
+import {init} from './login/loginDialog';
 
 $(function() {
-  loginDialog.init();
+  init();
 });

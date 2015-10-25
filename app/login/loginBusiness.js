@@ -1,63 +1,54 @@
-import common from '../../utils/common';
+import {isEmpty} from '../../utils/common';
 
-var loginValidation = (function() {
-	function validateCredentials(credentials) {
-		var validationResult = {
-			success: false,
-			error: null
+export function validateCredentials(credentials) {
+	var validationResult = {
+		success: false,
+		error: null
+	};
+
+	if (isEmpty(credentials.username) || isEmpty(credentials.password)) {
+		validationResult.error = {
+			username: isEmpty(credentials.username),
+			password: isEmpty(credentials.password)
 		};
 
-		if (common.isEmpty(credentials.username) || common.isEmpty(credentials.password)) {
-			validationResult.error = {
-				username: common.isEmpty(credentials.username),
-				password: common.isEmpty(credentials.password)
-			};
-
-		} else {
-			var validLogin = isValidLogin(credentials);
-			setValidationResult(validLogin, validationResult);
-		}
-
-		return validationResult;
+	} else {
+		var validLogin = isValidLogin(credentials);
+		setValidationResult(validLogin, validationResult);
 	}
 
-	function setValidationResult(validLogin, validationResult) {
-		if (validLogin) {
-			validationResult.success = true;
+	return validationResult;
+}
 
-		} else {
-			validationResult.error = {
-				login: true
-			}
+function setValidationResult(validLogin, validationResult) {
+	if (validLogin) {
+		validationResult.success = true;
+
+	} else {
+		validationResult.error = {
+			login: true
 		}
 	}
+}
 
 
-	function isValidLogin(credentials) {
-		return credentials.username === 'John' && credentials.password === 'doe';
+function isValidLogin(credentials) {
+	return credentials.username === 'John' && credentials.password === 'doe';
+}
+
+export function getErrorMessage(error) {
+	var message = "";
+	if (error.username && error.password) {
+		message = "Username and password cannot be empty";
+
+	} else  if (error.username) {
+		message = "Username cannot be empty";
+
+	} else if (error.password) {
+		message = "Password cannot be empty";
+
+	} else if (error.login) {
+		message = "Incorrect Username or Password";
 	}
-
-	function getErrorMessage(error) {
-		var message = "";
-		if (error.username && error.password) {
-			message = "Username and password cannot be empty";
-
-		} else  if (error.username) {
-			message = "Username cannot be empty";
-
-		} else if (error.password) {
-			message = "Password cannot be empty";
-
-		} else if (error.login) {
-			message = "Incorrect Username or Password";
-		}
-		return message;
-	}
-
-	return {
-		validateCredentials: validateCredentials,
-		getErrorMessage: getErrorMessage
-	};
-})();
-
-export default loginValidation;
+	return message;
+}

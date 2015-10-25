@@ -1,7 +1,3 @@
-var common = {
-	isEmpty: function(text) {
-		return !text;
-	}
+export function isEmpty(text) {
+	return !text;
 }
-
-export default common;

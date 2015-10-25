@@ -1,5 +1,5 @@
 ﻿import $ from 'jquery';
-import loginValidation from './loginBusiness';
+import * as loginValidation from './loginBusiness';
 
 function getCredentialsLoginForm() {
 	var credentials = {
@@ -22,7 +22,7 @@ function showOrHideErrorMessage(validationResult) {
 	}
 }
 
-function init() {
+export function init() {
 	$('#btnLogin').on('click', function() {
 		var credentials = getCredentialsLoginForm();
 		var validationResult = loginValidation.validateCredentials(credentials);
@@ -30,9 +30,3 @@ function init() {
 		showOrHideErrorMessage(validationResult);
 	});
 }
-
-var loginDialog = {
-	init : init
-};
-
-export default loginDialog;
