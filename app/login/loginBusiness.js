@@ -1,15 +1,16 @@
+import common from '../../utils/common';
 
-app.loginValidation = (function() {
+var loginValidation = (function() {
 	function validateCredentials(credentials) {
 		var validationResult = {
 			success: false,
 			error: null
 		};
 
-		if (utils.common.isEmpty(credentials.username) || utils.common.isEmpty(credentials.password)) {
+		if (common.isEmpty(credentials.username) || common.isEmpty(credentials.password)) {
 			validationResult.error = {
-				username: utils.common.isEmpty(credentials.username),
-				password: utils.common.isEmpty(credentials.password)
+				username: common.isEmpty(credentials.username),
+				password: common.isEmpty(credentials.password)
 			};
 
 		} else {
@@ -58,3 +59,5 @@ app.loginValidation = (function() {
 		getErrorMessage: getErrorMessage
 	};
 })();
+
+export default loginValidation;
