@@ -1,5 +1,1 @@
-import $ from 'jquery';
-
-$(function() {
-  alert('ready');
-});
+import './login/loginDialog';

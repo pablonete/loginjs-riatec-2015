@@ -1,7 +1,10 @@
-﻿$(document).ready(function() {
+﻿import $ from 'jquery';
+import * as loginBusiness from './loginBusiness';
+
+$(document).ready(function() {
 	$('#btnLogin').on('click', function() {
 		var credentials = getCredentialsLoginForm();
-		var validationResult = app.loginValidation.validateCredentials(credentials);
+		var validationResult = loginBusiness.validateCredentials(credentials);
 
 		showOrHideErrorMessage(validationResult);
 	});
@@ -21,7 +24,7 @@
 			$errorSummary.hide('slow');
 
 		} else {
-			var message = app.loginValidation.getErrorMessage(validationResult.error);
+			var message = loginBusiness.getErrorMessage(validationResult.error);
 			$errorSummary[0].innerText = message;
 			$errorSummary.show('slow');
 		}

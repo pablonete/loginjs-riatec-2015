@@ -1,5 +1,3 @@
-utils.common = {
-	isEmpty: function(text) {
-		return !text;
-	}
-}
+export var isEmpty = function(text) {
+  return !text;
+};
